@@ -1,0 +1,76 @@
+<form class="mb-4" [formGroup]="userForm">
+  <div class="row">
+    <div class="form-group col-md-5">
+      <label for="name">Name</label>
+      <input
+        id="name"
+        type="text"
+        class="form-control is-invalid"
+        [class.is-invalid]="userForm.get('name')?.errors && userForm.get('name')?.touched"
+        formControlName="name"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="userForm.get('name')?.hasError('required')"
+      >
+        This name field is required! Can't be empty or null.
+      </div>
+      <div
+        class="invalid-feedback"
+        *ngIf="userForm.get('name')?.hasError('maxlength')"
+      >
+        This name field can't exceed 250 characters.
+      </div>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="age">Age</label>
+      <input
+        id="age"
+        type="number"
+        class="form-control is-invalid"
+        [class.is-invalid]="userForm.get('age')?.errors && userForm.get('age')?.touched"
+        formControlName="age"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="userForm.get('age')?.hasError('required')"
+      >
+        Please enter your age! [12-110] years old.
+      </div>
+      <div
+        class="invalid-feedback"
+        *ngIf="userForm.get('age')?.hasError('min') || userForm.get('age')?.hasError('max')"
+      >
+      Your age field should be [12 - 110] years old.
+      </div>
+    </div>
+  </div>
+  <button
+    (click)="submitForm()"
+    class="btn btn-outline-primary mt-1 w-25"
+    [disabled]="!userForm.valid"
+  >
+    Add
+  </button>
+</form>
+<hr>
+<div class="row">
+  <app-user-card
+  (userInfoEmitter)="infoUserSelected($event)"
+    *ngFor="let username of users"
+    [user]="username"
+    class="col-md-3 mb-2">
+  </app-user-card>
+</div>
+<div class="mt-3 border col-md p-3" *ngIf="selectedUser">
+  <h2 style="font-weight: bold;">Seleted User</h2><hr>
+  <p><b>Name :</b><span style="margin-left: 15px;">{{selectedUser.name}}</span></p>
+  <p><b>Age :</b><span style="margin-left: 35px;">{{selectedUser.age}}</span></p>
+  <a
+    class="btn btn-outline-success"
+    style="border-width: 0px 0px 1px 0px;"
+    [routerLink]="'/users/details'"
+    [queryParams]="{username: selectedUser.name}"
+  >
+  Details</a>
+</div>

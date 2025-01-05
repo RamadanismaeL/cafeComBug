@@ -1,0 +1,10 @@
+<!--
+<h1>{{ num }}</h1>
+<button (click)="adiciona()" class="btn btn-outline-success">Adiciona</button>
+-->
+
+<div class="mt-3 border col-md p-3" *ngIf="user">
+  <h2 style="font-weight: bold;">Seleted User</h2><hr>
+  <p><b>Name :</b><span style="margin-left: 15px;">{{user.name}}</span></p>
+  <p><b>Age :</b><span style="margin-left: 35px;">{{user.age}}</span></p>
+</div>
