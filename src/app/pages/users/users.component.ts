@@ -54,5 +54,6 @@ export class UsersComponent implements OnInit {
     console.log(user);
     this.selectedUser = user;
     this.userService.setUser(user);
+    this.userService.setUserName(user);
   }
 }

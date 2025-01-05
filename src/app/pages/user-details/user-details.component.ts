@@ -11,5 +11,5 @@ import { UserService } from '../../_services/user.service';
 export class UserDetailsComponent
 {
   username: User | undefined;
-  constructor(userService: UserService) { this.username = userService.getUser(); }
+  constructor(userService: UserService) { this.username = userService.getUserName(); }
 }

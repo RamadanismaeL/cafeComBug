@@ -8,3 +8,51 @@
   <p><b>Name :</b><span style="margin-left: 15px;">{{user.name}}</span></p>
   <p><b>Age :</b><span style="margin-left: 35px;">{{user.age}}</span></p>
 </div>
+<hr><hr>
+<div class="row justify-content-center">
+  <div class="col-md-4">
+    <div class="input-group mb-3 mt-4">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by github username"
+        aria-label="Search by github username"
+        [(ngModel)]="username"
+        name="username"
+      />
+      <button
+        (click)="getGitUserHome()"
+        class="btn btn-outline-secondary"
+        type="button"
+        style="border-color: #ddd;"
+        >
+        Search</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="userGit" class="mt-1 container">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="card text-center">
+        <img [src]="userGit.avatar_url" alt="" class="card-image-top">
+        <div class="card-body">
+          <h4 class="card-title">{{ userGit.name }}</h4>
+          <p class="card-text">{{ '@'+userGit.login }}</p>
+          <div class="text-center row">
+            <div class="card-text col-md">
+              <p class="m-0" style="font-weight: bold;">Followers</p>
+              <p>{{ userGit.followers }}</p>
+            </div>
+            <div class="card-text col-md">
+              <p class="m-0" style="font-weight: bold;">Following</p>
+              <p>{{ userGit.following }}</p>
+            </div>
+          </div>
+          <p class="card-text">Location  :  {{ userGit.location }}</p>
+          <a [href]="userGit.html_url">Profile</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
