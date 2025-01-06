@@ -41,7 +41,7 @@ import { OcupadoService } from './_services/ocupado.service';
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
     OcupadoService,
-    //provideClientHydration(),
+    //provideClientHydration(), ---OR just--- provideHttpClient()
     HttpClient,
     provideHttpClient(withFetch())
   ],
